@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jeancarlosdanese/go-stress-test/tester"
+	"github.com/jeancarlosdanese/go-stress-test/internal/tester"
 )
 
 // Generate imprime um relatório final do teste de carga

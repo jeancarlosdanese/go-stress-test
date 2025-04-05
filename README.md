@@ -23,13 +23,16 @@ Uma ferramenta de linha de comando em Go para realizar **testes de carga (load t
 docker build -t go-stress-test .
 ```
 
-### 2. Executar teste:
+### 2. Executar o teste de carga:
 
 ```bash
-docker run --rm go-stress-test \
-  --url=http://example.com \
-  --requests=100 \
-  --concurrency=10
+docker run --rm go-stress-test exec   --url=http://example.com   --requests=100   --concurrency=10
+```
+
+Ou utilizando as **short options**:
+
+```bash
+docker run --rm go-stress-test exec   -u http://example.com   -r 100   -c 10
 ```
 
 > A URL precisa estar acessível a partir do container Docker.
@@ -38,26 +41,11 @@ docker run --rm go-stress-test \
 
 ## Parâmetros
 
-| Parâmetro       | Descrição                                     | Obrigatório    |
-| --------------- | --------------------------------------------- | -------------- |
-| `--url`         | URL do serviço a ser testado                  | sim            |
-| `--requests`    | Total de requisições a serem executadas       | default: `100` |
-| `--concurrency` | Número de chamadas simultâneas (concorrência) | default: `10`  |
-
----
-
-## Estrutura do Projeto
-
-```
-.
-├── Dockerfile
-├── main.go
-├── go.mod / go.sum
-├── tester/
-│   └── tester.go   # Execução concorrente de requisições
-└── report/
-    └── report.go   # Geração de relatório final
-```
+| Parâmetro              | Descrição                                     | Obrigatório    |
+| ---------------------- | --------------------------------------------- | -------------- |
+| `--url` / `-u`         | URL do serviço a ser testado                  | sim            |
+| `--requests` / `-r`    | Total de requisições a serem executadas       | default: `100` |
+| `--concurrency` / `-c` | Número de chamadas simultâneas (concorrência) | default: `10`  |
 
 ---
 
@@ -78,5 +66,3 @@ Distribuição de status HTTP:
   200: 100
 ================================
 ```
-
----
